@@ -4,12 +4,12 @@
 
 import 'dart:convert';
 
-People peopleFromJson(String str) => People.fromJson(json.decode(str));
+PeopleResponse peopleFromJson(String str) => PeopleResponse.fromJson(json.decode(str));
 
-String peopleToJson(People data) => json.encode(data.toJson());
+String peopleToJson(PeopleResponse data) => json.encode(data.toJson());
 
-class People {
-  People({
+class PeopleResponse {
+  PeopleResponse({
     this.aggregators,
     this.offset,
     this.results,
@@ -19,14 +19,14 @@ class People {
 
   Aggregators aggregators;
   int offset;
-  List<Result> results;
+  List<Bio> results;
   int size;
   int total;
 
-  factory People.fromJson(Map<String, dynamic> json) => People(
+  factory PeopleResponse.fromJson(Map<String, dynamic> json) => PeopleResponse(
     aggregators: Aggregators.fromJson(json["aggregators"]),
     offset: json["offset"],
-    results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+    results: List<Bio>.from(json["results"].map((x) => Bio.fromJson(x))),
     size: json["size"],
     total: json["total"],
   );
@@ -50,8 +50,8 @@ class Aggregators {
   };
 }
 
-class Result {
-  Result({
+class Bio {
+  Bio({
     this.context,
     this.meta,
     this.compensations,
@@ -83,15 +83,15 @@ class Result {
   bool verified;
   double weight;
 
-  factory Result.fromJson(Map<String, dynamic> json) => Result(
+  factory Bio.fromJson(Map<String, dynamic> json) => Bio(
     context: Context.fromJson(json["context"]),
     meta: Meta.fromJson(json["_meta"]),
     compensations: Compensations.fromJson(json["compensations"]),
-    locationName: json["locationName"],
-    name: json["name"],
+    locationName: json["locationName"] != null ? json["locationName"] : "",
+    name: json["name"]  != null ? json["name"] : "",
     openTo: List<String>.from(json["openTo"].map((x) => x)),
-    picture: json["picture"] == null ? null : json["picture"],
-    professionalHeadline: json["professionalHeadline"],
+    picture: json["picture"] == null ? 'https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg' : json["picture"],
+    professionalHeadline: json["professionalHeadline"]  != null ? json["professionalHeadline"] : "",
     remoter: json["remoter"],
     skills: List<Skill>.from(json["skills"].map((x) => Skill.fromJson(x))),
     subjectId: json["subjectId"],
@@ -258,7 +258,7 @@ class PersonClass {
   String name;
 
   factory PersonClass.fromJson(Map<String, dynamic> json) => PersonClass(
-    name: json["name"],
+    name: json["name"] != null ? json["name"] : "",
   );
 
   Map<String, dynamic> toJson() => {
@@ -376,14 +376,14 @@ class Person {
   double grammar;
 
   factory Person.fromJson(Map<String, dynamic> json) => Person(
-    name: json["name"] == null ? null : json["name"],
+    name: json["name"] == null ? "" : json["name"],
     weight: json["weight"] == null ? null : json["weight"].toDouble(),
     completion: json["completion"] == null ? null : json["completion"].toDouble(),
     grammar: json["grammar"] == null ? null : json["grammar"].toDouble(),
   );
 
   Map<String, dynamic> toJson() => {
-    "name": name == null ? null : name,
+    "name": name == null ? "" : name,
     "weight": weight == null ? null : weight,
     "completion": completion == null ? null : completion,
     "grammar": grammar == null ? null : grammar,
@@ -400,7 +400,7 @@ class Skill {
   double weight;
 
   factory Skill.fromJson(Map<String, dynamic> json) => Skill(
-    name: json["name"],
+    name: json["name"] != null ? json["name"] : "",
     weight: json["weight"].toDouble(),
   );
 

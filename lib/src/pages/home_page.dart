@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:torre/src/pages/job_search_page.dart';
+import 'package:torre/src/pages/people_search_page.dart';
 import 'package:torre/src/providers/jobs_provider.dart';
 import 'package:torre/src/providers/people_provider.dart';
 
@@ -11,6 +13,10 @@ class HomePage extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => new _NavigationModel(),
       child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text("torre"),
+        ),
         body: _Pages(),
         bottomNavigationBar: _MyBottomNavigationBar(),
       ),
@@ -58,12 +64,8 @@ class _Pages extends StatelessWidget {
       controller: navigationModel.pageController,
       physics: NeverScrollableScrollPhysics(),
       children: [
-        Container(
-          color: Colors.amber,
-        ),
-        Container(
-          color: Colors.blueAccent,
-        ),
+        PeopleSearchPage(),
+        JobSearchPage()
       ],
     );
   }

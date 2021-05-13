@@ -1,14 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'package:torre/src/models/bio_model.dart';
-import 'package:torre/src/models/people_model.dart';
+import 'package:torre/src/models/people_models.dart';
 
 class PeopleProvider {
 
   String _url = "search.torre.co";
 
-  Future<People> getPeopleSearch() async{
+  Future<PeopleResponse> getPeopleSearch() async{
 
     var headers = {
       'Content-Type': 'application/json'
@@ -23,7 +22,7 @@ class PeopleProvider {
 
     if (response.statusCode == 200) {
       final r = await response.stream.bytesToString();
-      People peopleResult = new People.fromJson(json.decode(r));
+      PeopleResponse peopleResult = new PeopleResponse.fromJson(json.decode(r));
 
       for (var res in peopleResult.results) {
         print(res.name);
