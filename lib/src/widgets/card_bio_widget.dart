@@ -28,12 +28,12 @@ class CardBio extends StatelessWidget {
         ]
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(10.0),
         color: Color(0xFF28292d),
       ),
       margin: EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: 5
+          horizontal: 20,
+          vertical: 10
       ),
       padding: EdgeInsets.all(15.0),
     );

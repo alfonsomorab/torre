@@ -11,13 +11,14 @@ class BiosListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: bios.length,
-      itemBuilder: (BuildContext context, int index){
-        return CardBio(
-            bio : bios[index],  index: index
-        );
-      },
-    );
+      return ListView.builder(
+        shrinkWrap: true,
+        itemCount: bios.length,
+        itemBuilder: (BuildContext context, int index){
+          return CardBio(
+              bio : bios[index],  index: index
+          );
+        },
+      );
   }
 }

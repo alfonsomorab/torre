@@ -24,51 +24,52 @@ class _PeopleSearchPageState extends State<PeopleSearchPage> {
   Widget build(BuildContext context) {
 
     final peopleService = Provider.of<PeopleService>(context);
-    //peopleService.getPeopleSearch();
-    print(peopleService.people[0].name);
 
-    return Container(
-      color: Colors.black,
-      height: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container (
+    final page = Container(
+        color: Colors.black,
+        height: double.infinity,
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container (
 
-            padding: EdgeInsets.only(top: 40, bottom: 20, left: 15),
-            child: Text('Search people',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 60, left: 20, right: 20),
-            child: Row(
-              children: [
-                Container(
-                  child: TextField(
-                    controller: myTextController,
+                padding: EdgeInsets.only(top: 40, bottom: 20, left: 15),
+                child: Text('Search people',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white
                   ),
-                  width: MediaQuery.of(context).size.width * 0.7,
                 ),
-                
-                FlatButton.icon(
-                    onPressed: () {
-                      peopleService.getPeopleSearch(myTextController.text);
-                      setState(() {
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 60, left: 20, right: 20),
+                child: Row(
+                    children: [
+                      Container(
+                        child: TextField(
+                          controller: myTextController,
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.7,
+                      ),
 
-                      });
-                    },
-                    icon: Icon(Icons.search),
-                    label: Text(""))
-              ]
-            ),
+                      IconButton(
+                        icon: Icon(Icons.search),
+                        onPressed: () {
+                          if (myTextController.text.length > 0)
+                            peopleService.getPeopleSearch(myTextController.text);
+                          setState(() {});
+                        },
+                      )
+                    ]
+                ),
 
-          ),
-          Expanded(child: BiosListWidget( peopleService.people )),
-        ]),
-    );
+              ),
+              ( peopleService.people.length > 0 )
+              ? Expanded(child: BiosListWidget( peopleService.people ))
+              : Center( child: CircularProgressIndicator() ),
+          ])
+      );
+
+    return page;
   }
 }
