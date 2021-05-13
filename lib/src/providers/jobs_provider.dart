@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:flutter/material.dart';
-import 'package:torre/models/jobs_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+import 'package:torre/src/models/jobs_model.dart';
 
 class JobsProvider {
   String _url = "search.torre.co";
@@ -14,6 +13,8 @@ class JobsProvider {
       'Content-Type': 'application/json'
     };
     var request = http.Request('POST', Uri.parse('https://search.torre.co/opportunities/_search/?lang=en&size=10&aggregate=true&offset=0'));
+
+    // I have to replace this line with the query to search
     request.body = '''{\n    "bestfor": {\n        "username": "alfonsomorabravo"\n    }\n}\n''';
     request.headers.addAll(headers);
 

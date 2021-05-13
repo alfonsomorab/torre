@@ -1,0 +1,33 @@
+Traking hours
+
+May 11
+18:00 - 23:00
+- Check APIs
+- Planing functionalities
+- Create a new Project
+- Create models
+
+May 12
+10:00 - 12:00
+- Some test with APIs
+- Planing app UI
+- Research about other projects
+
+May 12
+15:30 - 17:00
+- Create some views
+- Create a splash screen
+- Create Home Page
+
+May 12
+18:30 - 24:00
+- Create models
+- Create search jobs providers
+- Make some test to verify connection to server
+
+May 13
+9:00 -
+- Create search people provider
+- Make some test to new provider
+- Create People model
+- Create search page
