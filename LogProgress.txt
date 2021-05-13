@@ -26,8 +26,15 @@ May 12
 - Make some test to verify connection to server
 
 May 13
-9:00 -
+9:00 - 13:00
 - Create search people provider
 - Make some test to new provider
 - Create People model
 - Create search page
+
+May 13
+14:00 - 18:00
+- Complete searh people functionality
+- Make icon launcher to android and ios
+- Make a SplashScreen
+- Finish some UI details
